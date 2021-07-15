@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+body {
+    background-image: url("/img/background.png");
+}
+span {
+    color: #3127f3;
+}
+
+.btn {
+    background: #d43f8d;
+}
+.form-container {
+    background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+    border-radius: 5px;
+    margin-top: 230px;
+    padding: 25px 35px 10px 25px;
+}
+#signup,
+#alreadyRegistered {
+    color: #d43f8d;
+}
+.form-validation input:focus {
+    box-shadow: none;
+    border-color: black;
+}
