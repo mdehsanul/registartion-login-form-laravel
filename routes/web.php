@@ -27,5 +27,11 @@ Route::get('/loginform', function () {
     return view('loginform');
 });
 
-Route::post('registrationform', [UserController::class, 'getDatafromRefistrationform']);
-Route::post('loginform', [UserController::class, 'getDatafromLoginform']);
+Route::get('/registrationform', [UserController::class, 'showRegistrationform'])->middleware('isAlreadyLoggedIn');
+Route::get('/loginform', [UserController::class, 'showLoginform'])->middleware('isAlreadyLoggedIn');
+
+Route::post('/user-register-success', [UserController::class, 'getRegistrationData'])->name('user-register-success');
+Route::post('/user-login-success', [UserController::class, 'getloginData'])->name('user-login-success');
+
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('isLoggedIn');
+Route::get('/logout', [UserController::class, 'logout']);

@@ -4,26 +4,33 @@
         <!-- -------- Login form -------- -->
         <div class="col-md-7 form-container">
             <h1 class="text-center mb-5 text-white">Login</h1>
-            <form class="row g-2 d-flex justify-content-center align-items-center mt-5" action="loginform" method="post" id="login_form">
+            <hr class="text-white">
+            <form class="row g-2 d-flex justify-content-center align-items-center mt-5" method="post" action="{{route('user-login-success')}}"   id="login_form">
+                @if (Session::has('success'))
+                  <div class="alert alert-success">{{Session::get('success')}}</div>
+                @endif
+                @if (Session::has('fail'))
+                   <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                @endif
                 @csrf
                 <div class="col-md-8 form-validation">
                     <label for="email" class="form-label fs-5 text-white">Email</label>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="loginemail" name="loginemail" placeholder="Email. ex: abc@gmail.com">
+                        <input type="email" class="form-control" id="email" name="email"  placeholder="Email. ex: abc@gmail.com">
                     </div>
                 </div>
                 <div class="col-md-8 mb-3 form-validation">
                     <label for="password" class="form-label fs-5 text-white"> Password</label>
                     <div class="mb-3">
-                        <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="col-md-8 d-grid  mb-3">
-                    <button type="submit" value="submit" class="btn text-white" name="login">Login</button>
+                    <button type="submit"  class="btn text-white form-button" name="login" value="submit">Login</button>
                 </div>
                 <!-- don't have an account -->
                 <div class="form-group col-md-7 text-center">
-                    <p class="text-white">Don't have account? <a href="/registrationform" class="fw-bold" id="signup">Sign up here</a></p>
+                    <p class="text-white">Don't have account? <a href="registrationform" class="fw-bold" id="signup">Sign up here</a></p>
                 </div>
             </form>
         </div>
@@ -36,17 +43,17 @@
             $(document).ready(function () {
                 $("#login_form").validate({
                     rules: {
-                        loginemail: {
+                        email: {
                             required: true,
-                            loginemail: true,
+                            email: true,
                         },
-                        loginpassword: {
+                        password: {
                             required: true,
                             minlength: 5,
                         }
                     },
                     messages: {
-                        loginpassword: {
+                        password: {
                             required: "Please enter your password",
                             minlength: "Your password must consists of at least 5 character",
                         }
@@ -55,7 +62,7 @@
             });
         
         jQuery.validator.addMethod(
-            "loginemail",
+            "email",
             function (value, element) {
                 return (
                     this.optional(element) ||

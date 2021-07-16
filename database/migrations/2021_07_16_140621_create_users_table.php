@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('telephone');
-            $table->string('email')->unique();
+            $table->string('email')->unique(); // means can not use same email repeatedly
             $table->string('password');
             $table->string('cpassword');
             $table->string('image');

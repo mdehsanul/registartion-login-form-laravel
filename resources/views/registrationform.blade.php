@@ -4,7 +4,14 @@
         <!-- -------- Registration form -------- -->
         <div class="col-md-7 mt-md-5 form-container">
             <h1 class="text-center mb-2 text-white">Create an account</ul></h1>
-            <form class="row g-2 justify-content-center align-items-center form" method="post" action="registrationform"  id="registration_form">
+            <hr class="text-white">
+            <form class="row g-2 justify-content-center align-items-center form" method="post" action="{{route('user-register-success')}}"  id="registration_form">
+                @if (Session::has('success'))
+                  <div class="alert alert-success">{{Session::get('success')}}</div>
+                @endif
+                @if (Session::has('fail'))
+                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+              @endif
                 @csrf
                 <div class="col-md-8 form-validation">
                     <label for="name" class="form-label fs-5 text-white">Usrer Name</label>
@@ -22,6 +29,7 @@
                     <label for="email" class="form-label fs-5 text-white">Email</label>
                     <div class="mb-2">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email. ex: abc@gmail.com">
+                        <span class="text-dark">@error('email') {{$message}} @enderror</span>{{-- buildin validation from UseerController.php --}}
                     </div>
                 </div>
                 <div class="col-md-8 form-validation ">
@@ -36,7 +44,6 @@
                         <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password">
                     </div>
                 </div>
-                <!-- upload image -->
                 <div class="col-md-8 mb-4">
                     <label for="image" class="form-label fs-5 text-white">Upload Image</label>
                     <div>
@@ -44,11 +51,11 @@
                     </div>
                 </div>
                 <div class="col-md-8 d-grid mb-2">
-                    <button type="submit" class="btn text-white" name="register" value="submit">Register
+                    <button type="submit" class="btn text-white form-button" name="register" value="submit">Register
                         Now</button>
                 </div>
                 <div class="col-md-8 text-center">
-                    <p class="text-white">Already Registered? <a href="/loginform" class="fw-bold" id="alreadyRegistered">Login</a></p>
+                    <p class="text-white">Already Registered? <a href="loginform" class="fw-bold" id="alreadyRegistered">Login</a></p>
                 </div>
             </form>
         </div>
@@ -71,6 +78,7 @@
                         email: {
                             required: true,
                             email: true,
+                            uniqueEmail: true 
                         },
                         password: {
                             required: true,
