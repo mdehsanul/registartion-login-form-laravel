@@ -26,3 +26,7 @@ span {
     box-shadow: none;
     border-color: black;
 }
+
+.update-form {
+    margin-left: 285px;
+}

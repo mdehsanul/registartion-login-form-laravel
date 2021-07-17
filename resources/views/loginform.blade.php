@@ -3,7 +3,7 @@
 @section('content')
         <!-- -------- Login form -------- -->
         <div class="col-md-7 form-container">
-            <h1 class="text-center mb-5 text-white">Login</h1>
+            <h1 class="text-center mb-2 text-white">Login</h1>
             <hr class="text-white">
             <form class="row g-2 d-flex justify-content-center align-items-center mt-5 form" method="post" action="{{route('user-login-success')}}"   id="login_form">
                 @if (Session::has('success'))

@@ -9,19 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //get = registration
+    //registration
     function showRegistrationform()
     {
         return view('registrationform');
     }
 
-    //get = post
+    //login
     function showLoginform()
     {
         return view('loginform');
     }
 
-    //post = register
+    //registration
     function getRegistrationData(Request $request)
     {
         $request->validate([
@@ -47,7 +47,7 @@ class UserController extends Controller
         }
     }
 
-    //post = login
+    //login
     function getloginData(Request $request)
     {
         $request->validate([
@@ -57,7 +57,6 @@ class UserController extends Controller
         $user =  User::where('email', '=', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                // return back()->with('success', 'You have login successfully');
                 $request->session()->put('loginId', $user->id);
                 return redirect('dashboard');
             } else {
@@ -104,9 +103,6 @@ class UserController extends Controller
         $user->cpassword = $request->cpassword;
         $user->image = $request->image;
         $req = $user->save();
-        if ($req) {
-            return back()->with('success', 'You have registered successfully');
-        }
         return redirect('dashboard');
     }
 }

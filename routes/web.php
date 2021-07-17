@@ -19,22 +19,22 @@ Route::get('/', function () {
 });
 
 
-Route::get('/registrationform', function () {
+Route::get('registrationform', function () {
     return view('registrationform');
 });
 
-Route::get('/loginform', function () {
+Route::get('loginform', function () {
     return view('loginform');
 });
 
-Route::get('/registrationform', [UserController::class, 'showRegistrationform'])->middleware('isAlreadyLoggedIn');
-Route::get('/loginform', [UserController::class, 'showLoginform'])->middleware('isAlreadyLoggedIn');
+Route::get('registrationform', [UserController::class, 'showRegistrationform'])->middleware('isAlreadyLoggedIn');
+Route::get('loginform', [UserController::class, 'showLoginform'])->middleware('isAlreadyLoggedIn');
 
-Route::post('/user-register-success', [UserController::class, 'getRegistrationData'])->name('user-register-success');
-Route::post('/user-login-success', [UserController::class, 'getloginData'])->name('user-login-success');
+Route::post('user-register-success', [UserController::class, 'getRegistrationData'])->name('user-register-success');
+Route::post('user-login-success', [UserController::class, 'getloginData'])->name('user-login-success');
 
-Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('isLoggedIn');
-Route::get('/logout', [UserController::class, 'logout']);
+Route::get('dashboard', [UserController::class, 'dashboard'])->middleware('isLoggedIn');
+Route::get('logout', [UserController::class, 'logout']);
 
-Route::get('/updateform/{id}', [UserController::class, 'updateform']);
-Route::post('/update', [UserController::class, 'update']);
+Route::get('updateform/{id}', [UserController::class, 'updateform']);
+Route::post('update', [UserController::class, 'update']);

@@ -3,10 +3,10 @@
 @section('content')
 <div class="col-md-12">
     {{--update form---}}
-<div class="col-md-7 mt-md-5 form-container">
+<div class="col-md-7 mt-md-5 form-container update-form ">
     <h1 class="text-center mb-2 text-white">update your account</ul></h1>
     <hr class="text-white">
-    <form class="row g-2 justify-content-center align-items-center form" method="post" action="/update">
+    <form class="row g-2 justify-content-center align-items-center" method="post" action="/update">
         @csrf
         <input type="hidden" name="id"value="{{$data['id']}}">
         <div class="col-md-8 form-validation">
