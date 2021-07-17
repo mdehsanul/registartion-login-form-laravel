@@ -22,9 +22,8 @@
                 <td>{{$loginUserdata->telephone}}</td>
                 <td>{{$loginUserdata->email}}</td>
                 <td>{{$loginUserdata->password}}</td>
-                <td><button type="button" class="btn btn-dark text-white" id="update">
-                        update
-                    </button>
+                <td>
+                    <a  href={{'updateform/'.$loginUserdata->id}}   class="btn btn-dark text-white" id="update">update</a>
                 </td>
             </tr>
         </tbody>

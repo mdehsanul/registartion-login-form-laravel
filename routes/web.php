@@ -35,3 +35,6 @@ Route::post('/user-login-success', [UserController::class, 'getloginData'])->nam
 
 Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware('isLoggedIn');
 Route::get('/logout', [UserController::class, 'logout']);
+
+Route::get('/updateform/{id}', [UserController::class, 'updateform']);
+Route::post('/update', [UserController::class, 'update']);

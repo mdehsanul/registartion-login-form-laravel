@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Session;
 
 class UserController extends Controller
 {
@@ -86,5 +85,28 @@ class UserController extends Controller
             session()->pull('loginId'); // pull is the function for forgot
             return redirect('loginform');
         }
+    }
+    //showing update form
+    function updateform($id)
+    {
+        $data = User::find($id);
+        return view('updateform', ['data' => $data]);
+    }
+
+
+    //update
+    function update(Request $request)
+    {
+        $user = User::find($request->id); // model name
+        $user->name = $request->name;
+        $user->telephone = $request->telephone;
+        $user->password = Hash::make($request->password);
+        $user->cpassword = $request->cpassword;
+        $user->image = $request->image;
+        $req = $user->save();
+        if ($req) {
+            return back()->with('success', 'You have registered successfully');
+        }
+        return redirect('dashboard');
     }
 }
